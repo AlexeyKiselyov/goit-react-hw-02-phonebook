@@ -19,7 +19,8 @@ export class Phonebook extends Component {
   }
   onFormReset =()=> {
     this.setState({
-      name: ''
+      name: '',
+      number:''
     })
   }
 

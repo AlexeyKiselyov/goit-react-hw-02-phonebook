@@ -16,12 +16,23 @@ export class App extends Component {
   }
 
   onAddContact=(newUser)=>{
-    this.setState((prevState)=>({      
+    const uniqUserSearch = this.state.contacts.find(({name})=>name===newUser.name);
+    uniqUserSearch?alert(`${uniqUserSearch.name} is already in contacts`)
+    :this.setState((prevState)=>({      
         contacts: [...prevState.contacts,{...newUser,id:nanoid()}]      
     }))
   }
 
-  onChangeFilter =(e)=>{
+  onDeleteContact=(e)=>{      
+    const deleteById = e.target.closest('li').dataset.id;       
+    const newContacts = this.state.contacts.filter(contact=>contact.id!==deleteById);    
+    this.setState({
+      contacts:newContacts
+    })
+
+  }
+
+  onChangeFilter=(e)=>{
     this.setState({
       filter:e.target.value
     })
@@ -29,13 +40,20 @@ export class App extends Component {
   }
 
   render (){
+    const {contacts,filter}=this.state;   
+
     return(
     <>  
+
     <h2>Phonebook</h2> 
     <Phonebook onAddContact={this.onAddContact}/>
+
     <h2>Contacts</h2> 
     <Filter onChangeFilter={this.onChangeFilter}/>
-    <ContactList contacts={this.state.contacts} filter={this.state.filter}/>
+
+    
+    <ContactList contacts={contacts} filter={filter} onDeleteContact={this.onDeleteContact}/>    
+
     </>
     )    
   }  
