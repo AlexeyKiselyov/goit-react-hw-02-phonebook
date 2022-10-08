@@ -42,7 +42,7 @@ export const Button = styled.button`
   
   &:hover,
   &:focus{   
-    scale: 1.1;
+    scale: 1.05;
   }
   &:active{
     border-color: #2a2a2a;
