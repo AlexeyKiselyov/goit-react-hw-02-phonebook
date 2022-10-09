@@ -19,6 +19,13 @@ export const Input = styled.input`
 
   border: 2px solid grey;
   border-radius: 6px;
+
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus{   
+    border: 2px solid #2196f3;
+  }
   `
 
 export const Button = styled.button`  
